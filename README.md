@@ -16,7 +16,7 @@ This repetition breaks flow.
 
 ## Goal
 
-Restore working context instantly.
+Restore working context instantly:
 
 Scope a project once.
 Reopen everything relevant in one action.
@@ -42,4 +42,6 @@ One click -> full context restored.
 
 ## Installation
 
-Chrome Extension. Link: 
+Chrome Extension.  
+
+Link: 
