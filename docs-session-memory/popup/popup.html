@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title> docs session memory </title>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="title">docs session memory</div>
+
+            <!--load floating bubbles of existing group_name and "add";
+                and a new bubble of "create new"-->
+            <div id="bubble_container" class="bubble-container"></div>
+
+            <div id="create_row" class="create-row hidden">
+                <input id=""new_group_name" type="text" placeholder="group name..." />
+                <button id="create_button">create new</button>
+                <button id="cancel_button">cancel</button>
+            </div>
+
+            <div id="status" class="status"></div>
+        </div>
+
+        <script src="popup.js"></script>
+    </body>
+</html>
