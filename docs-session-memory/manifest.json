@@ -6,18 +6,18 @@
   "permissions": ["tabs", "storage", "tabGroups", "activeTab", "scripting", "identity"],
   "host_permissions": [
     "https://docs.google.com/*",
-    "https://drive.google.com/*"
+    "https://drive.google.com/*",
+    "https://www.googleapis.com/*"
   ],
   "oauth2": {
     "client_id": "YOUR_OAUTH_CLIENT_ID.apps.googleusercontent.com",
     "scopes": ["https://www.googleapis.com/auth/drive.readonly"]
   },
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
   "background": {
     "service_worker": "service_worker.js"
-  },
-  "action": {
-    "default_title": "Docs Session Memory",
-    "default_popup": "popup/popup.html"
   },
   "content_scripts": [
     {

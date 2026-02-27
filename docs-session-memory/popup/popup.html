@@ -7,16 +7,45 @@
     </head>
     <body>
         <div class="wrap">
-            <div class="title">docs session memory</div>
+            <div class="topbar">
+                <div class="title">docs session memory</div>
+                <button id="view_toggle_button" class="mini-button">list view</button>
+            </div>
 
-            <!--load floating bubbles of existing group_name and "add";
-                and a new bubble of "create new"-->
-            <div id="bubble_container" class="bubble-container"></div>
+            <div class="views-shell">
+                <div id="views_inner" class="views-inner">
+                    <section class="view-face view-main">
+                        <!--load floating bubbles of existing group_name and "add";
+                            and a new bubble of "create new"-->
+                        <div id="bubble_container" class="bubble-container"></div>
+                        <div id="create_slot" class="create-slot"></div>
+                    </section>
+                    <section class="view-face view-list">
+                        <div id="list_container" class="list-container"></div>
+                        <div id="list_create_slot" class="list-create-slot"></div>
+                    </section>
+                </div>
+            </div>
 
             <div id="create_row" class="create-row hidden">
-                <input id=""new_group_name" type="text" placeholder="group name..." />
-                <button id="create_button">create new</button>
+                <input id="new_group_name" type="text" placeholder="group name..." />
+                <button id="create_button">create</button>
                 <button id="cancel_button">cancel</button>
+            </div>
+
+            <div id="manage_panel" class="manage-panel hidden">
+                <div class="manage-head">
+                    <div id="manage_group_title" class="manage-title"></div>
+                    <div class="manage-actions">
+                        <button id="rename_group_button" class="mini-button">rename</button>
+                        <button id="delete_group_button" class="danger">delete group</button>
+                    </div>
+                </div>
+                <div id="manage_items" class="manage-items"></div>
+                <div class="manage-add">
+                    <input id="add_link_input" type="text" placeholder="add by link (Docs/Sheets/Slides/Drive folder)" />
+                    <button id="add_link_button" class="mini-button">add</button>
+                </div>
             </div>
 
             <div id="status" class="status"></div>

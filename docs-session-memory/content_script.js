@@ -23,7 +23,7 @@ function detect_context() {
     if (host === "drive.google.com") return "DRIVE";
     if (host === "docs.google.com") {
         const p = location.pathname;
-        if (/\/document\/d\/|\/spreadsheets\/d\/|\/presentation\/d\//.test(p)) return "DOC_PAGE";
+        if (/\/document\/(?:u\/\d+\/)?d\/|\/spreadsheets\/(?:u\/\d+\/)?d\/|\/presentation\/(?:u\/\d+\/)?d\//.test(p)) return "DOC_PAGE";
         return "DOCS_HOME";
     }
 
@@ -45,13 +45,51 @@ function unique_by_key(items) {
     return out;
 }
 
+function pick_title(node, link) {
+  const candidates = [
+    link?.getAttribute("title"),
+    link?.getAttribute("aria-label"),
+    node?.getAttribute("aria-label"),
+    link?.textContent,
+    node?.textContent,
+  ];
+
+  for (const raw of candidates) {
+    const t = (raw ?? "").trim();
+    if (t) return t;
+  }
+
+  return "";
+}
+
+function get_selected_nodes(ctx) {
+  const strict = ctx === "DRIVE"
+    ? [
+        'div[role="row"][aria-selected="true"]',
+        'div[role="gridcell"][aria-selected="true"]',
+        '[data-id][aria-selected="true"]',
+      ]
+    : [
+        'div[role="row"][aria-selected="true"]',
+        'div[role="listitem"][aria-selected="true"]',
+      ];
+
+  for (const sel of strict) {
+    const nodes = Array.from(document.querySelectorAll(sel));
+    if (nodes.length > 0) return nodes;
+  }
+
+  // fallback to broad selector if the DOM changes.
+  return Array.from(document.querySelectorAll('[aria-selected="true"]'));
+}
+
 /**
  * extract selected file IDs from Drive DOM.
  */
 function get_selected_drive() {
   const items = [];
   
-  const selected_nodes = Array.from(document.querySelectorAll('[aria-selected="true"]'));
+  const selected_nodes = get_selected_nodes("DRIVE");
 
   for (const node of selected_nodes) {
     let id = null;
@@ -66,7 +104,7 @@ function get_selected_drive() {
       const file_match= link.href.match(/\/file\/d\/([^/]+)/);
       if (file_match) { id = file_match[1], type = "drive_file" };
 
-      const folder_match= link.href.match(/\/folders\/d\/([^/]+)/);
+      const folder_match= link.href.match(/\/(?:drive\/)?folders\/([^/]+)/);
       if (folder_match) { id = folder_match[1], type = "drive_folder" };
     }
 
@@ -109,7 +147,7 @@ function get_selected_drive() {
 function get_selected_docs() {
   const items = [];
 
-  const selected_nodes = Array.from(document.querySelectorAll('[aria-selected="true"]'));
+  const selected_nodes = get_selected_nodes("DOCS_HOME");
 
   for (const node of selected_nodes) {
     // look for href containing /document/d/<ID>, /spreadsheets/d/<ID>, /presentation/d/<ID>
@@ -120,19 +158,20 @@ function get_selected_docs() {
     if (!link?.href) continue;
 
     const href = link.href;
-    const doc = href.match(/\/document\/d\/([^/]+)/);
+    const title = pick_title(node, link);
+    const doc = href.match(/\/document\/(?:u\/\d+\/)?d\/([^/]+)/);
     if (doc) {
-      items.push({ id: doc[1], type: "doc" });
+      items.push(title ? { id: doc[1], type: "doc", title } : { id: doc[1], type: "doc" });
       continue;
     }
-    const sheet = href.match(/\/spreadsheets\/d\/([^/]+)/);
+    const sheet = href.match(/\/spreadsheets\/(?:u\/\d+\/)?d\/([^/]+)/);
     if (sheet) {
-      items.push({ id: sheet[1], type: "sheet" });
+      items.push(title ? { id: sheet[1], type: "sheet", title } : { id: sheet[1], type: "sheet" });
       continue;
     }
-    const slide = href.match(/\/presentation\/d\/([^/]+)/);
+    const slide = href.match(/\/presentation\/(?:u\/\d+\/)?d\/([^/]+)/);
     if (slide) {
-      items.push({ id: slide[1], type: "slide" });
+      items.push(title ? { id: slide[1], type: "slide", title } : { id: slide[1], type: "slide" });
       continue;
     }
   }
@@ -158,4 +197,3 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   // unknown: ignore
   return false;
 })
-
