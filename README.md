@@ -1,23 +1,45 @@
 # plsm-GD
 
-project-level session memory for Google Docs
+Project-Level Session Memory for Google Docs
 
 ---
 
-**friction**: manual reopen of all file editors that are tied to a single project after every browser restart.  
+## Problem
 
-**goal**: restore working context instantly.  
-by scoping a project only once and everything relevant reopened in one action.  
+When working across multiple Google Docs, Sheets, and Slides within a single project, every browser restart forces a manual rebuild:
 
-**core idea**:  
-- group docs into project-level sets
-- opening one auto-restores the working set into a single Chrome tab group.
+- reopen each file
+- find the right tabs
+- reassemble the working context
 
-**features**:  
-- adding the current Google Doc/Sheet/Slide to a named group
-- adding selected files from Drive or Docs Home to a group
-- adding entire Drive folders as dynamic groups
-- updating existing groups or creating a new group
+This repetition breaks flow.
 
-**install**:  
-Chrome extension (link).
+## Goal
+
+Restore working context instantly.
+
+Scope a project once.
+Reopen everything relevant in one action.
+
+## Core Concept
+
+Instead of remembering individual files, remember project-level context.
+
+- Group Docs/Sheets/Slides into named project sets
+- Opening a project automatically restores its full working set
+- All tabs reopen together inside a single Chrome tab group
+
+One click -> full context restored.
+
+## Features
+
+- Add the current tab Google Doc/Sheet/Slide to a named group
+- Add selected files from Google Drive or Docs Home
+- Add entire Drive folders as dynamic groups
+- Create new groups or update existing ones
+- Prevent duplicate tabs on restore
+- Open projects as organized Chrome tab groups
+
+## Installation
+
+Chrome Extension. Link: 
