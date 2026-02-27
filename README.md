@@ -5,16 +5,18 @@ project-level session memory for Google Docs
 ---
 
 **core idea**:
-Group docs into project-level sets.  
-Opening one auto-restores the working set.
+Group docs into project-level sets. Opening one auto-restores the working set.
 
 ---
 
 **what**:
-A Chrome extension.  
-Goal: restore working context instantly.
+A Chrome extension. (view)
 
+**goal**: restore working context instantly.  
 Instead of reopening multiple file editors manually after every browser restart, you define a project once and reopen everything relevant in one action.
+
+**install**:
+link
 
 ---
 
