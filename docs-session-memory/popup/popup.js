@@ -59,9 +59,15 @@ function compute_field_height(group_names) {
     return Math.max(max_size + 8, Math.min(230, estimated));
 }
 
-function bubble_anchor_for_index(index, total, bubble_size, field_height) {
+function bubble_anchor_for_index(index, total, bubble_size, field_height, field_width) {
+    const r = bubble_size / 2;
+    const edge_pad = 3;
+    const min_x_pct = field_width > 0 ? ((r + edge_pad) / field_width) * 100 : 10;
+    const max_x_pct = 100 - min_x_pct;
+
     if (total <= 1) {
-        return { x: 50, y: Math.max(8 + bubble_size / 2, Math.min(field_height - bubble_size / 2 - 8, field_height * 0.45)) };
+        const safe_x = Math.max(min_x_pct, Math.min(max_x_pct, 50));
+        return { x: safe_x, y: Math.max(8 + bubble_size / 2, Math.min(field_height - bubble_size / 2 - 8, field_height * 0.45)) };
     }
 
     const progress = index / Math.max(1, total - 1); // recent first -> top
@@ -74,7 +80,7 @@ function bubble_anchor_for_index(index, total, bubble_size, field_height) {
     const y_jitter = ((index * 7) % 13) - 6;  // [-6..6]
 
     return {
-        x: Math.max(10, Math.min(90, x + x_jitter)),
+        x: Math.max(min_x_pct, Math.min(max_x_pct, x + x_jitter)),
         y: Math.max(top_bound, Math.min(bottom_bound, base_y + y_jitter)),
     };
 }
@@ -215,7 +221,7 @@ async function refresh_groups_ui() {
         const bubble_size = bubble_size_for_name(g);
         const row = document.createElement("div");
         row.className = "bubble-row";
-        const pos = bubble_anchor_for_index(i, groups.length, bubble_size, field_height);
+        const pos = bubble_anchor_for_index(i, groups.length, bubble_size, field_height, field_width);
         const drift = bubble_drift_for_anchor(i, pos, bubble_size, field_width, field_height);
         row.style.left = `${pos.x}%`;
         row.style.top = `${pos.y}px`;
@@ -399,10 +405,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const view_toggle_button = document.getElementById("view_toggle_button");
     view_toggle_button.addEventListener("click", () => {
         current_view = current_view === "main" ? "list" : "main";
-        views_inner.classList.remove("flip");
+        views_inner.classList.remove("switching");
         // restart animation
         void views_inner.offsetWidth;
-        views_inner.classList.add("flip");
+        views_inner.classList.add("switching");
         views_inner.classList.toggle("is-list", current_view === "list");
         view_toggle_button.textContent = current_view === "list" ? "bubble view" : "list view";
     });
@@ -462,6 +468,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("delete_group_button").addEventListener("click", async () => {
         if (!selected_group_name) return;
         const name = selected_group_name;
+        const confirmed = window.confirm(`confirm delete "${name}"?`);
+        if (!confirmed) return;
         const out = await send_to_sw({ type: "DELETE_GROUP", group_name: name });
         if (!out?.ok) {
             set_status(out?.error || "could not delete group");

@@ -194,6 +194,14 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     return true;
   }
 
+  if (type === "CONFIRM_OPEN_TABS") {
+    const tab_count = Number(message?.tab_count || 0);
+    const prompt_text = String(message?.prompt_text || "").trim();
+    const confirmed = window.confirm(prompt_text || `confirm opening ${tab_count} tabs?`);
+    sendResponse({ ok: true, confirmed });
+    return true;
+  }
+
   // unknown: ignore
   return false;
 })
