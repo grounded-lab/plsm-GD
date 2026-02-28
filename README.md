@@ -35,6 +35,10 @@ One click -> full context restored.
 
 [insert screen recording]
 
+## Architecture
+
+tree
+
 ## Features
 
 - Add the current tab Google Doc/Sheet/Slide to a named group
