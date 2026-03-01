@@ -8,11 +8,13 @@ Project-Level Session Memory for Google Docs
 
 Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-running, several structural frictions persist:
 
-- **No project-level session memory**
+- **No project-level session memory**   
     After browser restart or accidental closure, tabs and tab groups are lost and the working set must be rebuilt manually. Chrome grouping/pinning is session-bound and binary: either the context is already open, or it is gone. 
-- **High-tab cognitive load**
+
+- **High-tab cognitive load**  
     In large or multi-project scopes (tens to hundreds of open tabs), users cannot reliably determine whether a file is already open, which project it belongs to, or which other tabs also form its working context.
-- **Flattened tab model vs. contextual workflows**
+    
+- **Flattened tab model vs. contextual workflows**  
     In practice, users actively work on one primary project at a time, while keeping secondary or potentially useful tabs open “just in case.” Many tabs are contextually linked (one anchor -> several related tabs), but Chrome treats all tabs as flat and independent. Because there is no entry-point restore semantics, users must keep entire working sets open instead of reopening a single primary tab and having its full project context restored automatically.
 
 ## Concept
@@ -32,7 +34,7 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
 
 [insert screen recording]
 
-**some other features**
+**some other features:**
 - Restores reuse/merge by tab-group title to keep one canonical Chrome group per saved group.
 - Large auto-restore flows require confirmation before opening many tabs (combined threshold gate).
 - Drive folder adds are expanded recursively into supported editor files before storage/restore.
