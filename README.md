@@ -17,7 +17,9 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
 
 - **flattened tab model vs. contextual workflows**  
 
-    In practice, people typically focus on one primary project at a time while keeping secondary or potentially useful tabs open “just in case.” Many tabs are contextually linked (one anchor -> multiple related tabs), but Chrome treats all tabs as flat and independent. Without entry-point restore semantics, users must keep entire working sets open instead of reopening a single primary tab and having its full project context restored automatically — further amplifying tab sprawl and cognitive load.
+    In practice, people typically focus on one primary project at a time while keeping secondary or potentially useful tabs open “just in case.” Many tabs are contextually linked (one anchor -> multiple related tabs), but Chrome treats all tabs as flat and independent.  
+    
+    Without entry-point restore semantics, users must keep entire working sets open instead of reopening a single primary tab and having its full project context restored automatically — further amplifying tab sprawl and cognitive load.
 
 ## Concept
 
