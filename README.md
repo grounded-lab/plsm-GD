@@ -21,6 +21,7 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
 
 ## Concept
 
+**core:**
 - Restore the right working set quickly from *any* included tab entry point.
 
     - Opening a file directly from Docs/Drive auto-restores all saved group(s) that contain that file. 
