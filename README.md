@@ -1,39 +1,46 @@
 # plsm-GD
 
-Project-Level Session Memory for Google Docs & related.
+Project-Level Session Memory for Google Docs & related
 
 ---
 
 ## Problem
 
-When working across multiple Google Docs, Sheets, and Slides within a single project, every browser restart forces a manual rebuild:
+Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-running, several structural frictions persist:
 
-- reopen each file
-- find the right tabs
-- reassemble the working context
-
-This repetition breaks flow.
-
-## Goal
-
-Restore working context instantly:
-
-Scope a project once.
-Reopen everything relevant in one action.
+- **No project-level session memory**
+    After browser restart or accidental closure, tabs and tab groups are lost and the working set must be rebuilt manually. Chrome grouping/pinning is session-bound and binary: either the context is already open, or it is gone. 
+- **High-tab cognitive load**
+    In large or multi-project scopes (tens to hundreds of open tabs), users cannot reliably determine whether a file is already open, which project it belongs to, or which other tabs also form its working context.
+- **Flattened tab model vs. contextual workflows**
+    In practice, users actively work on one primary project at a time, while keeping secondary or potentially useful tabs open “just in case.” Many tabs are contextually linked (one anchor -> several related tabs), but Chrome treats all tabs as flat and independent. Because there is no entry-point restore semantics, users must keep entire working sets open instead of reopening a single primary tab and having its full project context restored automatically.
 
 ## Concept
 
-Instead of remembering individual files, remember project-level context.
-
-- Group Docs/Sheets/Slides into named project sets
-- Opening a project automatically restores its full working set
-- All tabs reopen together inside a single Chrome tab group
-
-One click -> full context restored.
-
-## Demo
+1. One trigger -> full context restored and grouped
 
 [insert screen recording]
+
+- Restore the right working set quickly from *any* included tab entry point.
+- Opening a file directly from Docs/Drive auto-restores all saved group(s) that contain that file.
+
+2. Opening a group directly from the extension restores only that selected group.
+
+[insert screen recording]
+
+3. Same file can exist in multiple groups without cross-group merge side effects.
+
+[insert screen recording]
+
+**some other features**
+- Restores reuse/merge by tab-group title to keep one canonical Chrome group per saved group.
+- Large auto-restore flows require confirmation before opening many tabs (combined threshold gate).
+- Drive folder adds are expanded recursively into supported editor files before storage/restore.
+- Support dynamic up-to-date grouping if the Drive folder changes.
+- Group deletion sync is behavior-aware:
+    - `Manage > Delete Group` always deletes saved group.
+    - Chrome `Ungroup` can delete matching saved group.
+    - Close-style tab loss does not incorrectly delete saved groups.
 
 ## Architecture
 
@@ -50,23 +57,9 @@ plsm-GD/
         └── popup.js
 ```
 
-- `manifest.json`: MV3 extension config, permissions, host permissions, OAuth scope, and script wiring.
-- `service_worker.js`: state + restore core (`chrome.storage.local`, tab-group open/auto-open/sync logic).
-- `content_script.js`: Docs/Drive DOM selection extraction + restore confirm prompt.
-- `popup/*`: extension UI for create/open/manage (bubble view + list view).
-
-## Features
-
-- Opening a file directly from Docs/Drive auto-restores all saved group(s) that contain that file.
-- Opening a group directly from the extension restores only that selected group.
-- Same file can exist in multiple groups without cross-group merge side effects.
-- Restores reuse/merge by tab-group title to keep one canonical Chrome group per saved group.
-- Large auto-restore flows require confirmation before opening many tabs (combined threshold gate).
-- Drive folder adds are expanded recursively into supported editor files before storage/restore.
-- Group deletion sync is behavior-aware:
-    - `Manage > Delete Group` always deletes saved group.
-    - Chrome `Ungroup` can delete matching saved group.
-    - Close-style tab loss does not incorrectly delete saved groups.
+- `service_worker.js`: state + restore core.
+- `content_script.js`: Docs/Drive DOM selection extraction.
+- `popup/*`: extension UI for create/open/manage/view.
 
 ## Installation
 
