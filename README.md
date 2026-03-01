@@ -4,7 +4,7 @@ Project-Level Session Memory for Google Docs
 
 ## Target
 
-Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-running, several structural frictions persist:
+Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-running, there are several structural frictions that persist:
 
 - **no project-level session memory**  
 
