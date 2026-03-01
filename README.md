@@ -41,7 +41,7 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
     - Chrome `Ungroup` can delete matching saved group.
     - Close-style tab loss does not incorrectly delete saved groups.
 
-## Architecture
+## Tree
 
 ```text
 plsm-GD/
