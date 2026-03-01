@@ -25,11 +25,11 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
 
     - Opening a file directly from Docs/Drive auto-restores all saved group(s) that contain that file. 
 
-    [insert screen recording]
+    - [insert screen recording]
     
     - Opening a group directly from the extension restores only that selected group.
 
-    [insert screen recording]
+    - [insert screen recording]
 
 **some other features:**
 - Same file can exist in multiple groups without cross-group merge side effects.
