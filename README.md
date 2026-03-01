@@ -16,7 +16,8 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
     In large or multi-project scopes (tens to hundreds of open tabs), users cannot reliably determine whether a file is already open, which project it belongs to, or which other tabs also form its working context.
 
 - **flattened tab model vs. contextual workflows**  
-    In practice, people typically focus on one primary project at a time, while keeping secondary or potentially useful tabs open “just in case.” Many tabs are contextually linked (one anchor -> several related tabs), but Chrome treats all tabs as flat and independent. Because there is no entry-point restore semantics, users must keep entire working sets open instead of reopening a single primary tab and having its full project context restored automatically. This also contributes to the high-tab cognitive load scenario mentioned above.
+    In practice, people typically focus on one primary project at a time, while keeping secondary or potentially useful tabs open “just in case.” Many tabs are contextually linked (one anchor -> several related tabs), but Chrome treats all tabs as flat and independent.  
+    Since there is no entry-point restore semantics, users must keep entire working sets open instead of reopening a single primary tab and having its full project context restored automatically. This also contributes to the high-tab cognitive load scenario mentioned above.
 
 ## Concept
 
