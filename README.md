@@ -34,7 +34,7 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
 
     - [insert screen recording]
 
-**some other features:**
+**some other:**
 - Same file can exist in multiple groups without cross-group merge side effects.
 - Restores reuse/merge by tab-group title to keep one canonical Chrome group per saved group.
 - Large auto-restore flows require confirmation before opening many tabs (combined threshold gate).
