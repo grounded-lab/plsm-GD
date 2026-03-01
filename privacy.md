@@ -1,4 +1,4 @@
-# Privacy Policy for Docs Session Memory
+# Privacy Policy
 
 **Last updated:** March 1, 2026
 
@@ -52,10 +52,6 @@ The extension does not load or execute remote JavaScript or WebAssembly. All exe
 ## Security
 
 We use Chrome extension platform controls and least-privilege permissions to limit access to only what is needed for core functionality.
-
-## Children's Privacy
-
-The extension is not directed to children under 13.
 
 ## Changes to This Policy
 

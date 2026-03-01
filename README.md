@@ -49,8 +49,12 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
 
 ```text
 plsm-GD/
+├── .gitignore
+├── LICENSE
 ├── README.md
+├── privacy.md
 └── docs-session-memory/
+    ├── icons/icon.png
     ├── manifest.json
     ├── service_worker.js
     ├── content_script.js
