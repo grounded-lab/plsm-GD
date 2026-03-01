@@ -3,7 +3,7 @@
   "name": "Docs Session Memory",
   "version": "0.1",
   "description": "project-level session memory for Google Docs",
-  "permissions": ["tabs", "storage", "tabGroups", "activeTab", "scripting", "identity"],
+  "permissions": ["tabs", "storage", "tabGroups", "activeTab", "identity"],
   "host_permissions": [
     "https://docs.google.com/*",
     "https://drive.google.com/*",
