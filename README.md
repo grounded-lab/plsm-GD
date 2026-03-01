@@ -64,9 +64,9 @@ plsm-GD/
 - Large auto-restore flows require confirmation before opening many tabs (combined threshold gate).
 - Drive folder adds are expanded recursively into supported editor files before storage/restore.
 - Group deletion sync is behavior-aware:
-- `Manage > Delete Group` always deletes saved group.
-- Chrome `Ungroup` can delete matching saved group.
-- Close-style tab loss does not incorrectly delete saved groups.
+- - `Manage > Delete Group` always deletes saved group.
+- - Chrome `Ungroup` can delete matching saved group.
+- - Close-style tab loss does not incorrectly delete saved groups.
 
 ## Installation
 
