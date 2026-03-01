@@ -1,6 +1,6 @@
 # plsm-GD
 
-Project-Level Session Memory for Google Docs & related
+Project-Level Session Memory for Google Docs
 
 ---
 
