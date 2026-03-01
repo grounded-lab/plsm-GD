@@ -21,22 +21,18 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
 
 ## Concept
 
-1. One trigger -> full context restored and grouped
-
-[insert screen recording]
-
 - Restore the right working set quickly from *any* included tab entry point.
-- Opening a file directly from Docs/Drive auto-restores all saved group(s) that contain that file.
 
-2. Opening a group directly from the extension restores only that selected group.
+    - Opening a file directly from Docs/Drive auto-restores all saved group(s) that contain that file. 
 
-[insert screen recording]
+    [insert screen recording]
+    
+    - Opening a group directly from the extension restores only that selected group.
 
-3. Same file can exist in multiple groups without cross-group merge side effects.
-
-[insert screen recording]
+    [insert screen recording]
 
 **some other features:**
+- Same file can exist in multiple groups without cross-group merge side effects.
 - Restores reuse/merge by tab-group title to keep one canonical Chrome group per saved group.
 - Large auto-restore flows require confirmation before opening many tabs (combined threshold gate).
 - Drive folder adds are expanded recursively into supported editor files before storage/restore.
