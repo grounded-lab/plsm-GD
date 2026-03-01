@@ -23,14 +23,14 @@ Since Google Docs/Sheets/Slides workflows are inherently multi-tab and long-runn
 
 ## Concept
 
-**core:**
+**core design:**
 - Restore the right working set quickly from *any* included tab entry point.
 
     - Opening a file directly from Docs/Drive auto-restores all saved group(s) that contain that file. 
 
-    - [insert screen recording]
+    - [insert screen recording (1 file -> 1 group)]  | [insert screen recording (1 file -> multiple groups)]. 
     
-    - Opening a group directly from the extension restores only that selected group.
+    - Opening a group directly from the extension restores only that selected group, regardless of if it contains any tab that is also included in another saved group.
 
     - [insert screen recording]
 
